@@ -25,7 +25,10 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    // Send data to Google Apps Script
+    // Send data to Google Apps Script with timeout
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+
     const response = await fetch(webAppUrl, {
       method: 'POST',
       headers: {
@@ -38,7 +41,10 @@ export async function POST(request: NextRequest) {
         color,
         address,
       }),
+      signal: controller.signal,
     });
+
+    clearTimeout(timeoutId);
 
     if (!response.ok) {
       throw new Error(`Apps Script returned ${response.status}`);
