@@ -96,19 +96,22 @@ export default function SalesFunnel() {
         body: JSON.stringify(formData),
       });
 
-      // Format WhatsApp message
-      const message = `Hello, I want to claim my ₦20,000 discount for the Omega Speedmaster (${formData.color}).
+      // Format WhatsApp message - clearer about purchasing
+      const message = `Hello, I want to BUY the Omega Speedmaster (${formData.color}) at the promo price of ₦85,000 (Save ₦20,000 from ₦105,000).
 
-Order Details:
+My Order Details:
 Name: ${formData.fullName}
 Phone: ${formData.phone}
 Address: ${formData.address}
 
-Please confirm my order.`;
+Please confirm my order and send payment details.`;
 
       // Open WhatsApp with pre-filled message
       const whatsappUrl = `https://wa.me/2348103796277?text=${encodeURIComponent(message)}`;
       window.open(whatsappUrl, '_blank');
+
+      // Redirect to success page
+      window.location.href = '/success';
 
     } catch (error) {
       console.error('Submission error:', error);
@@ -125,7 +128,7 @@ Please confirm my order.`;
         <div className="max-w-4xl mx-auto flex items-center justify-center gap-4">
           <span className="animate-pulse">🔥 FLASH SALE – ₦20,000 DISCOUNT ENDS SOON 🔥</span>
           <button onClick={scrollToForm} className="hidden sm:inline-block underline hover:opacity-80 transition-opacity">
-            Order Now to Claim Discount
+            Buy Now - Save ₦20,000
           </button>
         </div>
       </div>
@@ -175,7 +178,7 @@ Please confirm my order.`;
                   onClick={scrollToForm}
                   className="w-full bg-gold hover:bg-gold-dark text-black text-[15px] py-4 rounded-md font-black uppercase tracking-widest transition-colors shadow-[0_0_20px_rgba(197,160,89,0.2)]"
                 >
-                  Claim My ₦20,000 Discount
+                  BUY NOW - ONLY ₦85,000
                 </button>
              </div>
              <p className="text-sm text-grey mt-4">Once the timer ends, the price returns to ₦105,000.</p>
@@ -534,7 +537,7 @@ Please confirm my order.`;
                     disabled={isSubmitting}
                     className="w-full bg-gold hover:bg-gold-dark text-black text-[15px] p-4.5 font-black uppercase tracking-widest transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    {isSubmitting ? 'PROCESSING...' : 'CLAIM MY ₦20,000 DISCOUNT'}
+                    {isSubmitting ? 'PROCESSING...' : 'BUY NOW - ₦85,000'}
                   </button>
                    <p className="text-center text-grey text-xs mt-4 flex items-center justify-center gap-1.5 tracking-wide">
                      🔒 Safe & Secure Checkout. Pay on Delivery available.
