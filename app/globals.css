@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+@theme {
+  --color-gold: #C5A059;
+  --color-gold-dark: #9A7B40;
+  --color-bg-theme: #050505;
+  --color-surface: #111111;
+  --color-grey: #888888;
+  --font-serif: Georgia, serif;
+  --font-sans: "Helvetica Neue", Arial, sans-serif;
+}
